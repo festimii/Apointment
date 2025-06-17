@@ -1,1 +1,31 @@
-## Apointment
+# Barber Shop Appointment App
+
+This repository contains a minimal appointment application for a barber shop. The backend is built with **FastAPI** and **MongoDB**, and the frontend uses **Node.js** with simple HTML/CSS/JavaScript.
+
+## Backend
+
+The backend lives in the `backend/` directory.
+- `main.py`: FastAPI application with CRUD endpoints for appointments.
+- `requirements.txt`: Python dependencies.
+
+To run the backend (requires a running MongoDB instance on `localhost:27017`):
+
+```bash
+pip install -r backend/requirements.txt
+uvicorn backend.main:app --reload
+```
+
+The API will be available at `http://localhost:8000`.
+
+## Frontend
+
+The frontend lives in the `frontend/` directory and uses an Express server to serve static files.
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+This serves the HTML/CSS/JS from `frontend/public` on `http://localhost:3000`.
+The frontend communicates with the FastAPI backend to list, create and delete appointments.
