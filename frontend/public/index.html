@@ -3,16 +3,19 @@
 <head>
   <title>Barber Shop Appointments</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="vendor/flatpickr.min.css">
 </head>
 <body>
   <h1>Barber Shop Appointments</h1>
   <form id="appointment-form">
     <input type="text" id="customer" placeholder="Customer name" required>
-    <input type="datetime-local" id="datetime" required>
+    <input type="tel" id="phone" placeholder="Phone number" required>
+    <input type="text" id="datetime" placeholder="Date &amp; Time" required>
     <input type="text" id="service" placeholder="Service" required>
     <button type="submit">Book</button>
   </form>
   <ul id="appointments"></ul>
+  <script src="vendor/flatpickr.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
