@@ -42,3 +42,7 @@ ul#appointments li {
   display: flex;
   justify-content: space-between;
 }
+
+.hidden {
+  display: none;
+}

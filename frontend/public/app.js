@@ -12,6 +12,7 @@ async function fetchAppointments() {
     li.textContent = `${a.datetime} - ${a.customer} (${a.service})`;
     const del = document.createElement('button');
     del.textContent = 'Delete';
+    del.className = 'mui-btn mui-btn--danger';
     del.onclick = () => deleteAppointment(a.id);
     li.appendChild(del);
     list.appendChild(li);
@@ -53,4 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dateFormat: 'Y-m-d\\TH:i'
   });
   fetchAppointments();
+  document.getElementById('new-appointment-btn').addEventListener('click', () => {
+    document.getElementById('appointment-form').classList.toggle('hidden');
+  });
 });
