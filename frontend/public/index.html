@@ -6,25 +6,36 @@
   <link rel="stylesheet" href="vendor/flatpickr.min.css">
   <link rel="stylesheet" href="/vendor/mui/css/mui.min.css">
 </head>
-<body class="mui-container">
-  <h1>Barber Shop Appointments</h1>
-  <button id="new-appointment-btn" class="mui-btn mui-btn--primary">New Appointment</button>
-  <form id="appointment-form" class="mui-form hidden">
-    <div class="mui-textfield">
-      <input type="text" id="customer" placeholder="Customer name" required>
+<body>
+  <header class="mui-appbar">
+    <div class="mui-container">
+      <table>
+        <tr class="mui--appbar-height">
+          <td class="mui--text-title">Barber Shop Appointments</td>
+        </tr>
+      </table>
     </div>
-    <div class="mui-textfield">
-      <input type="tel" id="phone" placeholder="Phone number" required>
-    </div>
-    <div class="mui-textfield">
-      <input type="text" id="datetime" placeholder="Date &amp; Time" required>
-    </div>
-    <div class="mui-textfield">
-      <input type="text" id="service" placeholder="Service" required>
-    </div>
-    <button type="submit" class="mui-btn mui-btn--accent">Book</button>
-  </form>
-  <ul id="appointments"></ul>
+  </header>
+  <div class="mui-container">
+    <div id="notification" class="notification hidden"></div>
+    <button id="new-appointment-btn" class="mui-btn mui-btn--primary">New Appointment</button>
+    <form id="appointment-form" class="mui-form hidden">
+      <div class="mui-textfield">
+        <input type="text" id="customer" placeholder="Customer name" required>
+      </div>
+      <div class="mui-textfield">
+        <input type="tel" id="phone" placeholder="Phone number" required>
+      </div>
+      <div class="mui-textfield">
+        <input type="text" id="datetime" placeholder="Date &amp; Time" required>
+      </div>
+      <div class="mui-textfield">
+        <input type="text" id="service" placeholder="Service" required>
+      </div>
+      <button type="submit" class="mui-btn mui-btn--accent">Book</button>
+    </form>
+    <ul id="appointments"></ul>
+  </div>
   <script src="vendor/flatpickr.min.js"></script>
   <script src="/vendor/mui/js/mui.min.js"></script>
   <script src="app.js"></script>
