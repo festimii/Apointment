@@ -1,5 +1,7 @@
 const API_BASE = 'http://localhost:8000';
 
+let calendar;
+
 async function fetchAppointments() {
   const res = await fetch(`${API_BASE}/appointments`);
   const appointments = await res.json();
@@ -14,6 +16,10 @@ async function fetchAppointments() {
     li.appendChild(del);
     list.appendChild(li);
   });
+  if (calendar) {
+    const disabled = appointments.map(a => a.datetime);
+    calendar.set('disable', disabled);
+  }
 }
 
 async function deleteAppointment(id) {
@@ -24,15 +30,27 @@ async function deleteAppointment(id) {
 document.getElementById('appointment-form').addEventListener('submit', async e => {
   e.preventDefault();
   const customer = document.getElementById('customer').value;
+  const phone = document.getElementById('phone').value;
   const datetime = document.getElementById('datetime').value;
   const service = document.getElementById('service').value;
-  await fetch(`${API_BASE}/appointments`, {
+  const res = await fetch(`${API_BASE}/appointments`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ customer, datetime, service })
+    body: JSON.stringify({ customer, phone, datetime, service })
   });
+  if (!res.ok) {
+    const data = await res.json();
+    alert(data.detail || 'Failed to book appointment');
+    return;
+  }
   e.target.reset();
   fetchAppointments();
 });
 
-fetchAppointments();
+document.addEventListener('DOMContentLoaded', () => {
+  calendar = flatpickr('#datetime', {
+    enableTime: true,
+    dateFormat: 'Y-m-d\\TH:i'
+  });
+  fetchAppointments();
+});

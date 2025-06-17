@@ -12,11 +12,17 @@ appointments_collection = db.appointments
 class Appointment(BaseModel):
     id: str | None = None
     customer: str
+    phone: str
     datetime: str
     service: str
 
 @app.post("/appointments", response_model=Appointment)
 async def create_appointment(appointment: Appointment):
+    # prevent double booking for the same datetime
+    existing = await appointments_collection.find_one({"datetime": appointment.datetime})
+    if existing:
+        raise HTTPException(status_code=400, detail="Time slot already booked")
+
     data = appointment.dict(exclude={"id"})
     result = await appointments_collection.insert_one(data)
     appointment.id = str(result.inserted_id)
